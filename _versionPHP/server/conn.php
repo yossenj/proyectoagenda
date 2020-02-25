@@ -93,14 +93,15 @@ Class Events extends _MySQL
 	{
 		try {
 		    // prepare sql and bind parameters
-		    $stmt = $this->conn->prepare("INSERT INTO events (titulo,date_init,time_init,date_finish,time_finish,allday)
-		    VALUES (:titulo,:date_init,:time_init,:date_finish,:time_finish,:allday)");
+		    $stmt = $this->conn->prepare("INSERT INTO events (titulo,date_init,time_init,date_finish,time_finish,allday,user)
+		    VALUES (:titulo,:date_init,:time_init,:date_finish,:time_finish,:allday,:user)");
 		    $stmt->bindParam(':titulo', $titulo);
 		    $stmt->bindParam(':date_init', $start_date);
 		    $stmt->bindParam(':time_init', $start_hour);
 		    $stmt->bindParam(':date_finish', $end_date);
 		    $stmt->bindParam(':time_finish', $end_hour);
 		    $stmt->bindParam(':allday', $allDay);
+		    $stmt->bindParam(':user', $_SESSION['id']);
 
 		    // insert a row
 			$titulo = $this->request('titulo');
